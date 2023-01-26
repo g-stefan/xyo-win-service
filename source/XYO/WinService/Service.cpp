@@ -136,7 +136,7 @@ namespace XYO::WinService {
 		cmd << serviceName;
 		cmd << "\" binPath= \"";
 		cmd << executablePath;
-		cmd << "\" --service";
+		cmd << " --service\"";
 
 		XYO::System::Shell::executeHidden(cmd);
 
