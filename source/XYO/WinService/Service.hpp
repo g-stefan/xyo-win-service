@@ -30,7 +30,7 @@ namespace XYO::WinService {
 			XYO_WINSERVICE_EXPORT static VOID WINAPI serviceMain(DWORD argc, LPTSTR *argv);
 			XYO_WINSERVICE_EXPORT static VOID WINAPI serviceCtrlHandler(DWORD);
 			XYO_WINSERVICE_EXPORT static void worker();
-			XYO_WINSERVICE_EXPORT static void install(const char *);
+			XYO_WINSERVICE_EXPORT static void install();
 			XYO_WINSERVICE_EXPORT static void uninstall();
 			XYO_WINSERVICE_EXPORT static void start();
 			XYO_WINSERVICE_EXPORT static void stop();

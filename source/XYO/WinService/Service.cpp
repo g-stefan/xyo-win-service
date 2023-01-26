@@ -114,31 +114,11 @@ namespace XYO::WinService {
 		RegistryThread::threadEnd();
 	}
 
-	void Service::install(const char *appExe) {
+	void Service::install() {
 		String cmd;
 
-		String xpathMain;
-		String xappPath;
-		size_t xidx = 0;
-		char xstrExe[MAX_PATH];
-		GetModuleFileName(NULL, xstrExe, MAX_PATH);
-
-		xpathMain = xstrExe;
-		if (String::indexOfFromEnd(xpathMain, "\\", 0, xidx)) {
-			xpathMain = String::substring(xpathMain, 0, xidx);
-		} else {
-			if (String::indexOfFromEnd(xpathMain, "/", 0, xidx)) {
-				xpathMain = String::substring(xpathMain, 0, xidx);
-			} else {
-				xpathMain = ".";
-			};
-		};
-
-		if (xpathMain == ".") {
-			xpathMain = XYO::System::Shell::getCwd();
-		};
-
-		XYO::System::Shell::realPath(xpathMain, xappPath);
+		char executablePath[MAX_PATH];
+		GetModuleFileName(NULL, executablePath, MAX_PATH);
 
 		cmd = "sc stop \"";
 		cmd << serviceName;
@@ -155,9 +135,8 @@ namespace XYO::WinService {
 		cmd = "sc create \"";
 		cmd << serviceName;
 		cmd << "\" binPath= \"";
-		cmd << xappPath;
-		cmd << "\\mount-service.exe";
-		cmd << "\"";
+		cmd << executablePath;
+		cmd << "\" --service";
 
 		XYO::System::Shell::executeHidden(cmd);
 
@@ -218,7 +197,7 @@ namespace XYO::WinService {
 			if (strncmp(cmdS[i], "--", 2) == 0) {
 				opt = &cmdS[i][2];
 				if (strcmp(opt, "install") == 0) {
-					install(cmdS[0]);
+					install();
 					continue;
 				};
 				if (strcmp(opt, "uninstall") == 0) {
@@ -253,19 +232,21 @@ namespace XYO::WinService {
 					thread.join();
 					return 0;
 				};
+				if (strcmp(opt, "service") == 0) {
+					SERVICE_TABLE_ENTRY serviceTable[] = {
+					    {(LPSTR)serviceName, (LPSERVICE_MAIN_FUNCTION)serviceMain},
+					    {NULL, NULL}};
+
+					if (StartServiceCtrlDispatcher(serviceTable) == FALSE) {
+						return GetLastError();
+					};
+					return 0;
+				};
 				continue;
 			};
 		};
 
-		SERVICE_TABLE_ENTRY serviceTable[] = {
-		    {(LPSTR)serviceName, (LPSERVICE_MAIN_FUNCTION)serviceMain},
-		    {NULL, NULL}};
-
-		if (StartServiceCtrlDispatcher(serviceTable) == FALSE) {
-			return GetLastError();
-		};
-
-		return 0;
+		return 1;
 	};
 
 };
