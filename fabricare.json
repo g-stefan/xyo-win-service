@@ -1,0 +1,21 @@
+{
+	"solution" : {
+		"name" : "xyo-win-service",
+		"type" : "xyo-cpp",
+		"projects" : [
+			{
+				"name" : "xyo-win-service",
+				"make" : "lib-and-dll",
+				"SPDX-License-Identifier": "MIT",
+				"sourcePath" : "XYO/WinService",
+				"dependency" : [
+					"xyo-win"
+				],
+				"testSource" : [
+					"test.01"
+				]
+			}
+		],
+		"hasGithub" : true
+	}
+}
