@@ -10,9 +10,15 @@
 				"sourcePath" : "XYO/WinService",
 				"dependency" : [
 					"xyo-win"
-				],
-				"testSource" : [
-					"test.01"
+				]
+			},
+			{
+				"name" : "test.01",
+				"make" : "exe.static",
+				"category" : "test",
+				"SPDX-License-Identifier": "Unlicense",
+				"dependency" : [
+					"xyo-win-service"
 				]
 			}
 		],

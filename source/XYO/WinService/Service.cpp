@@ -73,7 +73,7 @@ namespace XYO::WinService {
 			SetServiceStatus(statusHandle, &status);
 			serviceStopEvent.notify();
 		};
-	}
+	};
 
 	VOID WINAPI Service::serviceMain(DWORD argc, LPTSTR *argv) {
 		RegistryThread::threadBegin();
@@ -112,7 +112,7 @@ namespace XYO::WinService {
 		SetServiceStatus(statusHandle, &status);
 
 		RegistryThread::threadEnd();
-	}
+	};
 
 	void Service::install() {
 		String cmd;
@@ -217,7 +217,7 @@ namespace XYO::WinService {
 					Thread thread;
 					workerTerminated = false;
 					thread.start(workerThread, NULL);
-					for (;;) {
+					while (!workerTerminated) {
 						WaitForSingleObject(GetCurrentThread(), 100);
 						if (Console::keyHit()) {
 							if (Console::getChar() == 'q') {

@@ -21,9 +21,17 @@ TestService::TestService() {
 };
 
 void TestService::serviceWork() {
+	int count=1;
+	printf("Begin\r\n");
 	while (!serviceStopEvent.peek()) {
+		printf("%d\r",count);
 		Thread::sleep(1000);
+		++count;
+		if(count>=10){
+			break;
+		};		
 	};
+	printf("\nDone.\r\n");
 };
 
 int TestService::main(int cmdN, char *cmdS[]) {
