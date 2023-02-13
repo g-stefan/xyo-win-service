@@ -14,9 +14,15 @@ namespace XYO::WinService {
 	const char *Service::serviceName;
 	bool Service::workerTerminated;
 	Service *Service::serviceThis;
+	Service::StopRun Service::stopRun;
+
+	static bool noStop() {
+		return false;
+	};
 
 	Service::Service() {
 		serviceThis = this;
+		stopRun = noStop;
 		init();
 	};
 
@@ -114,7 +120,7 @@ namespace XYO::WinService {
 		RegistryThread::threadEnd();
 	};
 
-	void Service::install() {
+	void Service::cmdInstall() {
 		String cmd;
 
 		char executablePath[MAX_PATH];
@@ -147,7 +153,7 @@ namespace XYO::WinService {
 		XYO::System::Shell::executeHidden(cmd);
 	};
 
-	void Service::uninstall() {
+	void Service::cmdUninstall() {
 		String cmd;
 
 		cmd = "sc stop \"";
@@ -163,7 +169,7 @@ namespace XYO::WinService {
 		XYO::System::Shell::executeHidden(cmd);
 	};
 
-	void Service::start() {
+	void Service::cmdStart() {
 		String cmd;
 
 		cmd = "sc start \"";
@@ -173,7 +179,7 @@ namespace XYO::WinService {
 		XYO::System::Shell::executeHidden(cmd);
 	};
 
-	void Service::stop() {
+	void Service::cmdStop() {
 		String cmd;
 
 		cmd = "sc stop \"";
@@ -181,6 +187,34 @@ namespace XYO::WinService {
 		cmd << "\"";
 
 		XYO::System::Shell::executeHidden(cmd);
+	};
+
+	void Service::cmdRun() {
+		Thread thread;
+		workerTerminated = false;
+		thread.start(workerThread, NULL);
+		while (!workerTerminated) {
+			WaitForSingleObject(GetCurrentThread(), 100);
+			if (stopRun()) {
+				break;
+			};
+		};
+		serviceStopEvent.notify();
+		while (!workerTerminated) {
+			WaitForSingleObject(GetCurrentThread(), 100);
+		};
+		thread.join();
+	};
+
+	int Service::cmdService() {
+		SERVICE_TABLE_ENTRY serviceTable[] = {
+		    {(LPSTR)serviceName, (LPSERVICE_MAIN_FUNCTION)serviceMain},
+		    {NULL, NULL}};
+
+		if (StartServiceCtrlDispatcher(serviceTable) == FALSE) {
+			return GetLastError();
+		};
+		return 0;
 	};
 
 	void Service::workerThread(void *) {
@@ -197,50 +231,27 @@ namespace XYO::WinService {
 			if (strncmp(cmdS[i], "--", 2) == 0) {
 				opt = &cmdS[i][2];
 				if (strcmp(opt, "install") == 0) {
-					install();
+					cmdInstall();
 					continue;
 				};
 				if (strcmp(opt, "uninstall") == 0) {
-					uninstall();
+					cmdUninstall();
 					continue;
 				};
 				if (strcmp(opt, "start") == 0) {
-					start();
+					cmdStart();
 					continue;
 				};
 				if (strcmp(opt, "stop") == 0) {
-					stop();
+					cmdStop();
 					continue;
 				};
 				if (strcmp(opt, "run") == 0) {
-					printf("Press 'q' to end service\n");
-					Thread thread;
-					workerTerminated = false;
-					thread.start(workerThread, NULL);
-					while (!workerTerminated) {
-						WaitForSingleObject(GetCurrentThread(), 100);
-						if (Console::keyHit()) {
-							if (Console::getChar() == 'q') {
-								break;
-							};
-						};
-					};
-					serviceStopEvent.notify();
-					while (!workerTerminated) {
-						WaitForSingleObject(GetCurrentThread(), 100);
-					};
-					thread.join();
+					cmdRun();
 					return 0;
 				};
 				if (strcmp(opt, "service") == 0) {
-					SERVICE_TABLE_ENTRY serviceTable[] = {
-					    {(LPSTR)serviceName, (LPSERVICE_MAIN_FUNCTION)serviceMain},
-					    {NULL, NULL}};
-
-					if (StartServiceCtrlDispatcher(serviceTable) == FALSE) {
-						return GetLastError();
-					};
-					return 0;
+					return cmdService();
 				};
 				continue;
 			};

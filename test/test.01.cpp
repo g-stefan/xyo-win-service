@@ -14,28 +14,40 @@ class TestService : public virtual Service {
 		TestService();
 		void serviceWork();
 		int main(int cmdN, char *cmdS[]);
+		static bool doStop();
 };
 
 TestService::TestService() {
 	serviceName = "TestService";
+	stopRun = doStop;
 };
 
 void TestService::serviceWork() {
-	int count=1;
+	int count = 1;
 	printf("Begin\r\n");
 	while (!serviceStopEvent.peek()) {
-		printf("%d\r",count);
+		printf("%d\r", count);
 		Thread::sleep(1000);
 		++count;
-		if(count>=10){
+		if (count >= 10) {
 			break;
-		};		
+		};
 	};
 	printf("\nDone.\r\n");
 };
 
+bool TestService::doStop() {
+	if (Console::keyHit()) {
+		if (Console::getChar() == 'q') {
+			return true;
+		};
+	};
+	return false;
+};
+
 int TestService::main(int cmdN, char *cmdS[]) {
 	if (cmdN == 1) {
+		printf("Press 'q' to stop service\n");
 		char *cmdSX[2] = {cmdS[0], "--run"};
 		return Service::main(2, cmdSX);
 	};

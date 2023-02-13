@@ -17,7 +17,10 @@ namespace XYO::WinService {
 			XYO_DISALLOW_COPY_ASSIGN_MOVE(Service);
 
 		public:
+			typedef bool (*StopRun)();
+
 			XYO_WINSERVICE_EXPORT static const char *serviceName;
+			XYO_WINSERVICE_EXPORT static StopRun stopRun;
 			XYO_WINSERVICE_EXPORT static Multithreading::Semaphore serviceStopEvent;
 			XYO_WINSERVICE_EXPORT virtual void serviceWork();
 			//
@@ -30,10 +33,12 @@ namespace XYO::WinService {
 			XYO_WINSERVICE_EXPORT static VOID WINAPI serviceMain(DWORD argc, LPTSTR *argv);
 			XYO_WINSERVICE_EXPORT static VOID WINAPI serviceCtrlHandler(DWORD);
 			XYO_WINSERVICE_EXPORT static void worker();
-			XYO_WINSERVICE_EXPORT static void install();
-			XYO_WINSERVICE_EXPORT static void uninstall();
-			XYO_WINSERVICE_EXPORT static void start();
-			XYO_WINSERVICE_EXPORT static void stop();
+			XYO_WINSERVICE_EXPORT static void cmdInstall();
+			XYO_WINSERVICE_EXPORT static void cmdUninstall();
+			XYO_WINSERVICE_EXPORT static void cmdStart();
+			XYO_WINSERVICE_EXPORT static void cmdStop();
+			XYO_WINSERVICE_EXPORT static void cmdRun();
+			XYO_WINSERVICE_EXPORT static int cmdService();
 			XYO_WINSERVICE_EXPORT static void workerThread(void *);
 			//
 			XYO_WINSERVICE_EXPORT Service();
