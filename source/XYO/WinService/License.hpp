@@ -13,8 +13,8 @@
 
 namespace XYO::WinService::License {
 
-	XYO_WINSERVICE_EXPORT const char *license();
-	XYO_WINSERVICE_EXPORT const char *shortLicense();
+	XYO_WINSERVICE_EXPORT std::string license();
+	XYO_WINSERVICE_EXPORT std::string shortLicense();
 
 };
 
