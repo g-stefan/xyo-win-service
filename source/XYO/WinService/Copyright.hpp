@@ -12,10 +12,10 @@
 #endif
 
 namespace XYO::WinService::Copyright {
-	XYO_WINSERVICE_EXPORT std::string copyright();
-	XYO_WINSERVICE_EXPORT std::string publisher();
-	XYO_WINSERVICE_EXPORT std::string company();
-	XYO_WINSERVICE_EXPORT std::string contact();
+	XYO_WINSERVICE_EXPORT const char *copyright();
+	XYO_WINSERVICE_EXPORT const char *publisher();
+	XYO_WINSERVICE_EXPORT const char *company();
+	XYO_WINSERVICE_EXPORT const char *contact();
 };
 
 #endif
