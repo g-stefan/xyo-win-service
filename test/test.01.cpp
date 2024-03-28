@@ -8,7 +8,7 @@
 using namespace XYO::WinService;
 
 class TestService : public virtual Service {
-		XYO_DISALLOW_COPY_ASSIGN_MOVE(TestService);
+		XYO_PLATFORM_DISALLOW_COPY_ASSIGN_MOVE(TestService);
 
 	public:
 		TestService();

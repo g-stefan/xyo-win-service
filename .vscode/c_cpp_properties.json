@@ -20,10 +20,10 @@
                 "C:/Program Files (x86)/Windows Kits/10/include/10.0.19041.0/winrt"
             ],
             "defines": [
-                "XYO_OS_WINDOWS",
-                "XYO_COMPILER_MSVC",
-                "XYO_APPLICATION_64BIT",
-                "XYO_MULTI_THREAD"                
+                "XYO_PLATFORM_OS_WINDOWS",
+                "XYO_PLATFORM_COMPILER_MSVC",
+                "XYO_PLATFORM_64BIT",
+                "XYO_PLATFORM_MULTI_THREAD"                
             ],
             "browse": {
                 "path": [                    
@@ -56,10 +56,10 @@
 		"${workspaceRoot}/../xyo-managed-memory/source"
             ],
             "defines": [
-                "XYO_OS_LINUX",
-                "XYO_COMPILER_GCC",
-                "XYO_APPLICATION_64BIT",
-                "XYO_MULTI_THREAD",
+                "XYO_PLATFORM_OS_LINUX",
+                "XYO_PLATFORM_COMPILER_GCC",
+                "XYO_PLATFORM_64BIT",
+                "XYO_PLATFORM_MULTI_THREAD",
                 "XYO_PLATFORM=\"ubuntu-focal\""
             ],
             "browse": {

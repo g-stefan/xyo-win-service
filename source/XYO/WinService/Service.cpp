@@ -10,7 +10,7 @@ namespace XYO::WinService {
 
 	SERVICE_STATUS Service::status;
 	SERVICE_STATUS_HANDLE Service::statusHandle;
-	Multithreading::Semaphore Service::serviceStopEvent;
+	Semaphore Service::serviceStopEvent;
 	const char *Service::serviceName;
 	bool Service::workerTerminated;
 	Service *Service::serviceThis;

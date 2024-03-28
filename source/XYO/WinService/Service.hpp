@@ -12,16 +12,17 @@
 #endif
 
 namespace XYO::WinService {
+	typedef XYO::Multithreading::Semaphore Semaphore;
 
 	class Service : public virtual IApplication {
-			XYO_DISALLOW_COPY_ASSIGN_MOVE(Service);
+			XYO_PLATFORM_DISALLOW_COPY_ASSIGN_MOVE(Service);
 
 		public:
 			typedef bool (*StopRun)();
 
 			XYO_WINSERVICE_EXPORT static const char *serviceName;
 			XYO_WINSERVICE_EXPORT static StopRun stopRun;
-			XYO_WINSERVICE_EXPORT static Multithreading::Semaphore serviceStopEvent;
+			XYO_WINSERVICE_EXPORT static Semaphore serviceStopEvent;
 			XYO_WINSERVICE_EXPORT virtual void serviceWork();
 			//
 			XYO_WINSERVICE_EXPORT static SERVICE_STATUS status;
