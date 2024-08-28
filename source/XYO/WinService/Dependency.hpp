@@ -24,6 +24,10 @@
 #else
 #	define XYO_WINSERVICE_EXPORT XYO_PLATFORM_LIBRARY_IMPORT
 #endif
+#ifdef XYO_WINSERVICE_LIBRARY
+#	undef XYO_WINSERVICE_EXPORT
+#	define XYO_WINSERVICE_EXPORT
+#endif
 
 namespace XYO::WinService {
 	using namespace XYO::System;

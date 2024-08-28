@@ -6,13 +6,14 @@
             "intelliSenseMode": "msvc-x64",
             "includePath": [
                 "${workspaceRoot}/source",
-		"${workspaceRoot}/../xyo-managed-memory/source",
-		"${workspaceRoot}/../xyo-data-structures/source",
-		"${workspaceRoot}/../xyo-multithreading/source",
-		"${workspaceRoot}/../xyo-encoding/source",
-		"${workspaceRoot}/../xyo-system/source",
-                "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.34.31933/atlmfc/include",
-                "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.34.31933/include",
+                "${workspaceRoot}/../xyo-platform/source",
+                "${workspaceRoot}/../xyo-managed-memory/source",
+                "${workspaceRoot}/../xyo-data-structures/source",
+                "${workspaceRoot}/../xyo-multithreading/source",
+                "${workspaceRoot}/../xyo-encoding/source",
+                "${workspaceRoot}/../xyo-system/source",
+                "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.40.33807/atlmfc/include",
+                "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.40.33807/include",
                 "C:/Program Files (x86)/Windows Kits/NETFXSDK/4.8/include/um",
                 "C:/Program Files (x86)/Windows Kits/10/include/10.0.19041.0/ucrt",
                 "C:/Program Files (x86)/Windows Kits/10/include/10.0.19041.0/shared",
@@ -23,18 +24,19 @@
                 "XYO_PLATFORM_OS_WINDOWS",
                 "XYO_PLATFORM_COMPILER_MSVC",
                 "XYO_PLATFORM_64BIT",
-                "XYO_PLATFORM_MULTI_THREAD"                
+                "XYO_PLATFORM_MULTI_THREAD"
             ],
             "browse": {
-                "path": [                    
+                "path": [
                     "${workspaceRoot}/source",
-		    "${workspaceRoot}/../xyo-managed-memory/source",
-		    "${workspaceRoot}/../xyo-data-structures/source",
-		    "${workspaceRoot}/../xyo-multithreading/source",
-		    "${workspaceRoot}/../xyo-encoding/source",
-		    "${workspaceRoot}/../xyo-system/source",
-                    "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.34.31933/atlmfc/include",
-                    "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.34.31933/include",
+                    "${workspaceRoot}/../xyo-platform/source",
+                    "${workspaceRoot}/../xyo-managed-memory/source",
+                    "${workspaceRoot}/../xyo-data-structures/source",
+                    "${workspaceRoot}/../xyo-multithreading/source",
+                    "${workspaceRoot}/../xyo-encoding/source",
+                    "${workspaceRoot}/../xyo-system/source",
+                    "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.40.33807/atlmfc/include",
+                    "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.40.33807/include",
                     "C:/Program Files (x86)/Windows Kits/NETFXSDK/4.8/include/um",
                     "C:/Program Files (x86)/Windows Kits/10/include/10.0.19041.0/ucrt",
                     "C:/Program Files (x86)/Windows Kits/10/include/10.0.19041.0/shared",
@@ -46,14 +48,14 @@
             },
             "cStandard": "c11",
             "cppStandard": "c++17",
-            "compilerPath": "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.34.31933/bin/Hostx64/x64/cl.exe"
+            "compilerPath": "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.40.33807/bin/Hostx64/x64/cl.exe"
         },
         {
             "name": "linux",
             "intelliSenseMode": "gcc-x64",
-            "includePath": [ 
+            "includePath": [
                 "${workspaceRoot}/source",
-		"${workspaceRoot}/../xyo-managed-memory/source"
+                "${workspaceRoot}/../xyo-managed-memory/source"
             ],
             "defines": [
                 "XYO_PLATFORM_OS_LINUX",
@@ -63,9 +65,9 @@
                 "XYO_PLATFORM=\"ubuntu-focal\""
             ],
             "browse": {
-                "path": [                    
+                "path": [
                     "${workspaceRoot}/source",
-		    "${workspaceRoot}/../xyo-managed-memory/source"
+                    "${workspaceRoot}/../xyo-managed-memory/source"
                 ],
                 "limitSymbolsToIncludedHeaders": true,
                 "databaseFilename": ""
