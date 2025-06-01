@@ -8,4 +8,4 @@
 #include <XYO/WinService/Copyright.rh>
 #include <XYO/WinService/Version.rh>
 
-XYO_PLATFORM_VERSION_INFO(XYO_WINSERVICE,"xyo-file-to-cs.dll","WinService - Convert file to C/C++ source")
+XYO_PLATFORM_VERSION_INFO(XYO_WINSERVICE,"xyo-win-service.dll","WinService - Windows Service Library")
