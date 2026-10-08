@@ -48,7 +48,8 @@ bool TestService::doStop() {
 int TestService::main(int cmdN, char *cmdS[]) {
 	if (cmdN == 1) {
 		printf("Press 'q' to stop service\n");
-		char *cmdSX[2] = {cmdS[0], "--run"};
+		static char runOption[] = "--run";
+		char *cmdSX[2] = {cmdS[0], runOption};
 		return Service::main(2, cmdSX);
 	};
 	return Service::main(cmdN, cmdS);

@@ -1,5 +1,6 @@
 {
 	"solution" : {
+		"namespace" : "xyo",
 		"name" : "xyo-win-service",
 		"type" : "xyo-cpp",
 		"projects" : [
@@ -14,6 +15,24 @@
 			},
 			{
 				"name" : "test.01",
+				"make" : "exe",
+				"category" : "test",
+				"SPDX-License-Identifier": "Unlicense",
+				"dependency" : [
+					"xyo-win-service"
+				]
+			},
+			{
+				"name" : "test.02",
+				"make" : "exe",
+				"category" : "test",
+				"SPDX-License-Identifier": "Unlicense",
+				"dependency" : [
+					"xyo-win-service"
+				]
+			},
+			{
+				"name" : "test.03",
 				"make" : "exe",
 				"category" : "test",
 				"SPDX-License-Identifier": "Unlicense",
