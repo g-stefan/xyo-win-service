@@ -1,7 +1,7 @@
 version = 1
-SPDX-PackageName = "Managed Memory"
+SPDX-PackageName = "XYO Win Service"
 SPDX-PackageSupplier = "Grigore Stefan <g_stefan@yahoo.com>"
-SPDX-PackageDownloadLocation = "https://github.com/g-stefan/xyo-managed-memory"
+SPDX-PackageDownloadLocation = "https://github.com/g-stefan/xyo-win-service"
 
 [[annotations]]
 path = ".github/**"
@@ -34,6 +34,12 @@ SPDX-FileCopyrightText = "2023-2026 Grigore Stefan <g_stefan@yahoo.com>"
 SPDX-License-Identifier = "Unlicense"
 
 [[annotations]]
+path = ".claude/**"
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2023-2026 Grigore Stefan <g_stefan@yahoo.com>"
+SPDX-License-Identifier = "Unlicense"
+
+[[annotations]]
 path = "mkdocs.yml"
 precedence = "aggregate"
 SPDX-FileCopyrightText = "2023-2026 Grigore Stefan <g_stefan@yahoo.com>"
@@ -53,6 +59,12 @@ SPDX-License-Identifier = "Unlicense"
 
 [[annotations]]
 path = "README.md"
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2023-2026 Grigore Stefan <g_stefan@yahoo.com>"
+SPDX-License-Identifier = "MIT"
+
+[[annotations]]
+path = "docs/**"
 precedence = "aggregate"
 SPDX-FileCopyrightText = "2023-2026 Grigore Stefan <g_stefan@yahoo.com>"
 SPDX-License-Identifier = "MIT"

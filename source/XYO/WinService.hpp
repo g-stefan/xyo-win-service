@@ -8,6 +8,10 @@
 #define XYO_WINSERVICE_HPP
 
 #include <XYO/WinService/Dependency.hpp>
+#include <XYO/WinService/Copyright.hpp>
+#include <XYO/WinService/License.hpp>
+#include <XYO/WinService/Version.hpp>
+
 #include <XYO/WinService/Service.hpp>
 
 #endif
